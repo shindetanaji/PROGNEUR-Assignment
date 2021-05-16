@@ -12,6 +12,7 @@ import jxl.read.biff.BiffException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 
@@ -29,32 +30,29 @@ public class BaseClass {
 			System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
+		}else{
+			driver = new FirefoxDriver();
 		}
 		
 		driver.get(prop.getProperty("siteUrl"));
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
 	@DataProvider
-	public Object[][] getData() throws BiffException, IOException {
-		FileInputStream fis = new FileInputStream("src/test/resources/ReadData.xls");
-		Workbook book = Workbook.getWorkbook(fis);
-		Sheet sheet = book.getSheet(0);
-		int rows = sheet.getRows();
-		int columns = sheet.getColumns();
-		String testData[][] = new String[rows - 1][columns];
-		int count = 0;
-		for (int i = 1; i < rows; i++) {
-			for (int j = 0; j < columns; j++) {
-				Cell cell = sheet.getCell(j, i);
-				testData[count][j] = cell.getContents();
-			}
-			count++;
-		}
-		fis.close();
-		return testData;
+	public Object[][] loginData() throws BiffException, IOException {
+		return ReadFile.readData("Sheet1");
 	}
 	
+	@DataProvider
+	public Object[][] getData(){
+		return new Object[][]{
+			   new Object[] {"admin@phptravels.com", "demoadmin"}
+		};
+	}
 	
+	@DataProvider
+	public Object[][] registerData() throws BiffException, IOException {
+		return ReadFile.readData("Sheet2");
+	}
 	
 }

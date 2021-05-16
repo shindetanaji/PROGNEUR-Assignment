@@ -1,7 +1,5 @@
 package com.qc.demo.pages;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,11 +12,16 @@ public class DashboardPage {
 	public DashboardPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	@FindBy(xpath="//li[@id='logout']")
 	WebElement logout;
+	
+	@FindBy(xpath="//a[@href='#ACCOUNTS']")
+	WebElement account;
+	
+	@FindBy(partialLinkText="Customers")
+	WebElement customers;
 	
 	public String getHomePageTitle() {
 		String titleDashBoard = driver.getTitle();
@@ -33,4 +36,12 @@ public class DashboardPage {
 		logout.click();
 	}
 	
+	public void clickOnAccounts(){
+		account.click();
+		
+	}
+	
+	public void clickOnCustomer(){
+		customers.click();
+	}
 }

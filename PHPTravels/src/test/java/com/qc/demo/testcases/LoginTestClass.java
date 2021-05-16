@@ -15,7 +15,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-public class TestClass extends BaseClass{
+public class LoginTestClass extends BaseClass{
 
 	WebDriver driver;
 	static DashboardPage dashboard;
@@ -39,7 +39,7 @@ public class TestClass extends BaseClass{
 				+ "src/test/resources/extent-config.xml"));
 	}
 	
-	@Test(dataProvider="getData")
+	@Test(dataProvider="loginData")
 	public void doLogin(String uName, String uPass){
 		logger = extent.startTest("passTest");
 		this.userName = uName;
