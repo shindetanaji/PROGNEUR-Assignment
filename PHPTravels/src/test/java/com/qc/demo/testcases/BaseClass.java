@@ -21,6 +21,7 @@ public class BaseClass {
 
 	WebDriver driver;
 	ReadFile read = new ReadFile();
+	
 	@BeforeSuite
 	public void doSetUp(){
 		Properties prop = read.readPropData();
