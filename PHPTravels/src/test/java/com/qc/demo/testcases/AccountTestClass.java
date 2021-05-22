@@ -1,7 +1,5 @@
 package com.qc.demo.testcases;
 
-import javax.swing.text.DefaultEditorKit.CutAction;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;

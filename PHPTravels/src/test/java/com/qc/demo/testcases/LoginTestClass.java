@@ -28,7 +28,6 @@ public class LoginTestClass extends BaseClass{
 	static ExtentTest logger;
 	static ITestResult result;
 	
-	//@Parameters({ "OS", "browser" })
 	@BeforeTest
 	public void setUpReport(){
 		extent = new ExtentReports(System.getProperty("user.dir") +"/test-output/testReport.html");
@@ -39,7 +38,7 @@ public class LoginTestClass extends BaseClass{
 				+ "src/test/resources/extent-config.xml"));
 	}
 	
-	@Test(dataProvider="loginData")
+	@Test(dataProvider="login")
 	public void doLogin(String uName, String uPass){
 		logger = extent.startTest("passTest");
 		this.userName = uName;

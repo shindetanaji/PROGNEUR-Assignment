@@ -1,14 +1,7 @@
 package com.qc.demo.testcases;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,8 +31,8 @@ public class BaseClass {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
-	@DataProvider
-	public Object[][] loginData() throws BiffException, IOException {
+	@DataProvider(name="login")
+	public Object[][] loginData() throws IOException {
 		return ReadFile.readData("Sheet1");
 	}
 	
@@ -50,8 +43,8 @@ public class BaseClass {
 		};
 	}
 	
-	@DataProvider
-	public Object[][] registerData() throws BiffException, IOException {
+	@DataProvider(name="register")
+	public Object[][] registerData() throws IOException {
 		return ReadFile.readData("Sheet2");
 	}
 	
